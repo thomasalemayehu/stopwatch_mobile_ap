@@ -39,9 +39,21 @@ class LapsCacheService {
     return [];
   }
 
-  Future<void> removeData(String key) async {
+  Future<void> removeLap(int lapId) async {
     await _initPrefs();
-    await _prefs?.remove(key);
+    String? jsonString = _prefs?.getString(identifier);
+    if (jsonString != null) {
+      List laps = json
+          .decode(jsonString)
+          .map((item) => item as Map<String, dynamic>)
+          .toList();
+
+      laps = [
+        for (var lapInfo in laps)
+          if (lapInfo['id'] != lapId) lapInfo
+      ];
+      await _prefs?.setString(identifier, jsonEncode(laps));
+    }
   }
 
   void clear() async {

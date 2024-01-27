@@ -1,17 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
+import 'package:stopwatch/constants.dart';
+import 'package:stopwatch/services/LapCacheService.dart';
 import 'package:stopwatch/state/LapEngine.dart';
 
 import '../helpers.dart';
+import '../models/Lap.dart';
 
 class LapDisplay extends StatelessWidget {
   final String label;
-  final Duration duration;
-  const LapDisplay({super.key, required this.label, required this.duration});
+  final Lap lap;
+  const LapDisplay({super.key, required this.label, required this.lap});
 
   @override
   Widget build(BuildContext context) {
+    LapEngine lapEngine = Provider.of<LapEngine>(context);
+    LapsCacheService lapsCacheService = LapsCacheService.instance;
     return DecoratedBox(
       decoration: const BoxDecoration(
         border: Border(
@@ -31,11 +36,29 @@ class LapDisplay extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
             ),
-            Text(
-              Helper.formatDisplayTime(duration),
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    fontStyle: FontStyle.italic,
+            Row(
+              children: [
+                Text(
+                  Helper.formatDisplayTime(lap.elapsedTime),
+                  style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        fontStyle: FontStyle.italic,
+                      ),
+                ),
+                SizedBox(
+                  width: 0.05.sw,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    lapEngine.removeLap(lap.id);
+                    lapsCacheService.removeLap(lap.id);
+                  },
+                  child: Icon(
+                    Icons.delete_outline,
+                    color: StopwatchAppConstantValues.stopButtonColor
+                        .withOpacity(0.8),
                   ),
+                )
+              ],
             )
           ],
         ),
@@ -57,7 +80,7 @@ class LapsDisplay extends StatelessWidget {
             itemCount: stopwatchTimer.savedLaps.length,
             itemBuilder: (BuildContext context, int index) => LapDisplay(
               label: 'Lap ${index + 1}',
-              duration: stopwatchTimer.savedLaps[index].elapsedTime,
+              lap: stopwatchTimer.savedLaps[index],
             ),
           );
         }),

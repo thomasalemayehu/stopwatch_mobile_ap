@@ -15,7 +15,6 @@ class StopwatchTimer extends ChangeNotifier {
 
   void _loadTimerFromCache() async {
     String cachedTimer = await TimerCacheService.instance.getTimer();
-    print(cachedTimer);
     _elapsed = Duration(milliseconds: int.parse(cachedTimer));
     notifyListeners();
   }

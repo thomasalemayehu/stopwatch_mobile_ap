@@ -30,12 +30,14 @@ class TimerCacheService {
   Future<String> getTimer() async {
     await _initPrefs();
     String? timerString = _prefs?.getString(identifier);
-    if (timerString != null) {
-      var data = jsonDecode(timerString) as Map<String, dynamic>;
 
-      return data[identifier];
+    if (timerString == "" || timerString == null || timerString == "{}") {
+      return "0";
     }
-    return "0";
+
+    var data = jsonDecode(timerString) as Map<String, dynamic>;
+
+    return data[identifier];
   }
 
   void clear() async {
