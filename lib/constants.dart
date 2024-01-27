@@ -8,8 +8,9 @@ class StopwatchAppConstantValues {
   static const textColor = Color(0xFFFFFFFF);
 
   //
-  static const startButtonColor = Color(0x417DEE6A);
-  static const resetButtonColor = Color(0x7BE81A21);
+  static const startButtonColor = Color(0x2283EC72);
+  static const resetButtonColor = Color(0x7B5D5656);
+  static const stopButtonColor = Color(0x35D00812);
   static const lapButtonColor = Colors.pink;
 
   static var textThemes = TextTheme(

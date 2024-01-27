@@ -1,40 +1,49 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/provider.dart';
 import 'package:stopwatch/components/LapsDisplay.dart';
 import 'package:stopwatch/components/StopwatchControls.dart';
 import 'package:stopwatch/components/StopwatchDisplay.dart';
+import 'package:stopwatch/state/LapEngine.dart';
+import 'package:stopwatch/state/StopwatchTimer.dart';
 
 class StopwatchPage extends StatelessWidget {
   const StopwatchPage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        body: SafeArea(
-      child: Center(
-        child: Padding(
-          padding: EdgeInsets.symmetric(vertical: 0.04.sh),
-          child: Column(
-            children: [
-              //
-              const StopwatchDisplay(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => StopwatchTimer()),
+        ChangeNotifierProvider(create: (_) => LapEngine()),
+      ],
+      child: Scaffold(
+          body: SafeArea(
+        child: Center(
+          child: Padding(
+            padding: EdgeInsets.symmetric(vertical: 0.04.sh),
+            child: Column(
+              children: [
+                //
+                const StopwatchDisplay(),
 
-              // Spacer
-              SizedBox(
-                height: 0.05.sh,
-              ),
+                // Spacer
+                SizedBox(
+                  height: 0.05.sh,
+                ),
 
-              //
-              const StopwatchControls(),
+                //
+                const StopwatchControls(),
 
-              const Expanded(
-                child: LapsDisplay(),
-              ),
-            ],
+                const Expanded(
+                  child: LapsDisplay(),
+                ),
+              ],
+            ),
           ),
         ),
-      ),
-    ));
+      )),
+    );
   }
 }
 
