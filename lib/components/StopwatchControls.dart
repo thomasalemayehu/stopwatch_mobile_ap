@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 import 'package:stopwatch/constants.dart';
 import 'package:stopwatch/services/LapCacheService.dart';
+import 'package:stopwatch/services/TimerCacheService.dart';
 import 'package:stopwatch/state/LapEngine.dart';
 import 'package:stopwatch/state/StopwatchTimer.dart';
 
@@ -52,6 +53,7 @@ class StopwatchControls extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     LapsCacheService lapsCacheService = LapsCacheService.instance;
+    TimerCacheService timerCacheService = TimerCacheService.instance;
     return SizedBox(
       height: 0.1.sh,
       width: 0.9.sw,
@@ -85,6 +87,9 @@ class StopwatchControls extends StatelessWidget {
                               StopwatchAppConstantValues.resetButtonColor,
                           onTap: () {
                             stopwatchTimer.reset();
+                            timerCacheService.clear();
+
+                            //
                             lapEngine.clearLaps();
                             lapsCacheService.clear();
                           },
@@ -98,7 +103,12 @@ class StopwatchControls extends StatelessWidget {
                       label: "Stop",
                       backgroundColor:
                           StopwatchAppConstantValues.stopButtonColor,
-                      onTap: stopwatchTimer.stop,
+                      onTap: () {
+                        stopwatchTimer.stop();
+
+                        timerCacheService.saveTimer(
+                            stopwatchTimer.elapsed.inMilliseconds.toString());
+                      },
                     )
                   : ControlButton(
                       label: "Start",

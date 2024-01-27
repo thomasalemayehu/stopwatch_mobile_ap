@@ -23,7 +23,6 @@ class LapsCacheService {
   }
 
   Future<void> saveLap(Map<String, dynamic> data) async {
-    print(data);
     await _initPrefs();
     List<Map<String, dynamic>> storedData = await getLaps();
     storedData.add(data);

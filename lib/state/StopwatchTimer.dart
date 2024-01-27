@@ -2,10 +2,23 @@ import 'dart:async';
 
 import 'package:flutter/cupertino.dart';
 
+import '../services/TimerCacheService.dart';
+
 class StopwatchTimer extends ChangeNotifier {
   DateTime? _startTime;
   Duration _elapsed = Duration.zero;
   Timer? _timer;
+
+  StopwatchTimer() {
+    _loadTimerFromCache();
+  }
+
+  void _loadTimerFromCache() async {
+    String cachedTimer = await TimerCacheService.instance.getTimer();
+    print(cachedTimer);
+    _elapsed = Duration(milliseconds: int.parse(cachedTimer));
+    notifyListeners();
+  }
 
   Duration get elapsed =>
       _elapsed +
