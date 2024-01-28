@@ -4,6 +4,7 @@ import 'package:stopwatch/constants.dart';
 import 'package:stopwatch/pages/StopwatchPage.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const StopwatchApp());
 }
 
