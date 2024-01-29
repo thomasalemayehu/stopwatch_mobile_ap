@@ -37,7 +37,6 @@ class StopwatchPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<Map<String, dynamic>>(
-        key: const Key("mySpecialKey"),
         future: _loadFromCache(),
         builder: (BuildContext context,
             AsyncSnapshot<Map<String, dynamic>> snapshot) {
@@ -62,31 +61,32 @@ class StopwatchPage extends StatelessWidget {
               ),
             ],
             child: Scaffold(
+                key: const Key("mySpecialKey"),
                 body: SafeArea(
-              child: Center(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 0.04.sh),
-                  child: Column(
-                    children: [
-                      //
-                      const StopwatchDisplay(),
+                  child: Center(
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(vertical: 0.04.sh),
+                      child: Column(
+                        children: [
+                          //
+                          const StopwatchDisplay(),
 
-                      // Spacer
-                      SizedBox(
-                        height: 0.05.sh,
+                          // Spacer
+                          SizedBox(
+                            height: 0.05.sh,
+                          ),
+
+                          //
+                          const StopwatchControls(),
+
+                          const Expanded(
+                            child: LapsDisplay(),
+                          ),
+                        ],
                       ),
-
-                      //
-                      const StopwatchControls(),
-
-                      const Expanded(
-                        child: LapsDisplay(),
-                      ),
-                    ],
+                    ),
                   ),
-                ),
-              ),
-            )),
+                )),
           );
         });
   }

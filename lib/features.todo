@@ -1,1 +1,12 @@
-4. testing
+1. Widget/Integration Testing
+2. relase things
+3. Localization
+
+
+//
+Certificates and Provisioning Profiles: Generate and configure distribution certificates and provisioning profiles in the Apple Developer Center.
+
+Bundle Identifier: Ensure that your app's bundle identifier matches the one configured in your Apple Developer account.
+
+Signing
+Splash Screen

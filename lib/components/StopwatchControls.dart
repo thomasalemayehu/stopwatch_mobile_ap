@@ -55,6 +55,7 @@ class StopwatchControls extends StatelessWidget {
     LapsCacheService lapsCacheService = LapsCacheService.instance;
     TimerCacheService timerCacheService = TimerCacheService.instance;
     return SizedBox(
+      key: const Key("stopwatchControls"),
       height: 0.1.sh,
       width: 0.9.sw,
       child: Center(

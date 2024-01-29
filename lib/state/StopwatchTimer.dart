@@ -20,7 +20,7 @@ class StopwatchTimer extends ChangeNotifier {
   void _updateTime() {
     _elapsed += DateTime.now().difference(_startTime!);
     _startTime = DateTime.now();
-    notifyListeners(); // Notify listeners about the change
+    notifyListeners();
   }
 
   void start() {
@@ -41,6 +41,14 @@ class StopwatchTimer extends ChangeNotifier {
   void reset() {
     stop();
     _elapsed = Duration.zero;
-    notifyListeners(); // Notify listeners about the change
+    notifyListeners();
+  }
+
+  @override
+  void dispose() {
+    if (isRunning) {
+      _timer?.cancel();
+    }
+    super.dispose();
   }
 }

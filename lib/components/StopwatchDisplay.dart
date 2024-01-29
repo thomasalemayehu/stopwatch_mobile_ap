@@ -12,6 +12,7 @@ class StopwatchDisplay extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<StopwatchTimer>(builder: (context, model, child) {
       return DecoratedBox(
+        key: const Key("stopwatchDisplay"),
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           border: Border.all(
@@ -26,6 +27,7 @@ class StopwatchDisplay extends StatelessWidget {
           child: Center(
               child: Text(
             Helper.formatDisplayTime(model.elapsed),
+            key: const Key("stopwatchTimer"),
             style: Theme.of(context)
                 .textTheme
                 .displayLarge
