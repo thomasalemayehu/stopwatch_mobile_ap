@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:stopwatch/components/LapsDisplay.dart';
-import 'package:stopwatch/components/StopwatchControls.dart';
-import 'package:stopwatch/components/StopwatchDisplay.dart';
-import 'package:stopwatch/state/LapEngine.dart';
-import 'package:stopwatch/state/StopwatchTimer.dart';
 
-import '../models/Lap.dart';
-import '../services/LapCacheService.dart';
-import '../services/TimerCacheService.dart';
+import '../components/laps_display.dart';
+import '../components/stopwatch_controls.dart';
+import '../components/stopwatch_display.dart';
+import '../models/lap.dart';
+import '../services/lap_cache_service.dart';
+import '../services/timer_cache_service.dart';
+import '../state/lap_engine.dart';
+import '../state/stopwatch_timer.dart';
 
 class StopwatchPage extends StatelessWidget {
   const StopwatchPage({super.key});
@@ -61,32 +61,31 @@ class StopwatchPage extends StatelessWidget {
               ),
             ],
             child: Scaffold(
-                key: const Key("mySpecialKey"),
                 body: SafeArea(
-                  child: Center(
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(vertical: 0.04.sh),
-                      child: Column(
-                        children: [
-                          //
-                          const StopwatchDisplay(),
+              child: Center(
+                child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 0.04.sh),
+                  child: Column(
+                    children: [
+                      //
+                      const StopwatchDisplay(),
 
-                          // Spacer
-                          SizedBox(
-                            height: 0.05.sh,
-                          ),
-
-                          //
-                          const StopwatchControls(),
-
-                          const Expanded(
-                            child: LapsDisplay(),
-                          ),
-                        ],
+                      // Spacer
+                      SizedBox(
+                        height: 0.05.sh,
                       ),
-                    ),
+
+                      //
+                      const StopwatchControls(),
+
+                      const Expanded(
+                        child: LapsDisplay(),
+                      ),
+                    ],
                   ),
-                )),
+                ),
+              ),
+            )),
           );
         });
   }
@@ -102,13 +101,12 @@ class BorderTop extends StatelessWidget {
         border: Border(
           top: BorderSide(
             color: Theme.of(context).primaryColor,
-            width: 1.0,
           ),
         ),
       ),
       child: SizedBox(
-        width: 0.9.sw, // Set the width to take up the available space
-        height: 1, // Set the desired height of the top border
+        width: 0.9.sw,
+        height: 1,
       ),
     );
   }

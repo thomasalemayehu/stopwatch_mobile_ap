@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 
-import '../models/Lap.dart';
+import '../models/lap.dart';
 
 class LapEngine extends ChangeNotifier {
   List<Lap> savedLaps = [];

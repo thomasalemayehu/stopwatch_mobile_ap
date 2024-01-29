@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:stopwatch/constants.dart';
-import 'package:stopwatch/services/LapCacheService.dart';
-import 'package:stopwatch/services/TimerCacheService.dart';
-import 'package:stopwatch/state/LapEngine.dart';
-import 'package:stopwatch/state/StopwatchTimer.dart';
 
-import '../models/Lap.dart';
+import '../constants.dart';
+import '../models/lap.dart';
+import '../services/lap_cache_service.dart';
+import '../services/timer_cache_service.dart';
+import '../state/lap_engine.dart';
+import '../state/stopwatch_timer.dart';
 
-//
 class ControlButton extends StatelessWidget {
   final String label;
   final Color backgroundColor;

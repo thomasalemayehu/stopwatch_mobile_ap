@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:stopwatch/models/Lap.dart';
-import 'package:stopwatch/state/LapEngine.dart';
+import 'package:stopwatch/models/lap.dart';
+import 'package:stopwatch/state/lap_engine.dart';
 
 void main() {
   group('Lap Functionality Tests', () {

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:stopwatch/constants.dart';
-import 'package:stopwatch/services/LapCacheService.dart';
-import 'package:stopwatch/state/LapEngine.dart';
 
+import '../constants.dart';
 import '../helpers.dart';
-import '../models/Lap.dart';
+import '../models/lap.dart';
+import '../services/lap_cache_service.dart';
+import '../state/lap_engine.dart';
 
 class LapDisplay extends StatelessWidget {
   final String label;

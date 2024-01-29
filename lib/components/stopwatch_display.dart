@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
-import 'package:stopwatch/state/StopwatchTimer.dart';
 
 import '../helpers.dart';
+import '../state/stopwatch_timer.dart';
 
 class StopwatchDisplay extends StatelessWidget {
   const StopwatchDisplay({super.key});
@@ -17,7 +17,6 @@ class StopwatchDisplay extends StatelessWidget {
           shape: BoxShape.circle,
           border: Border.all(
             width: 8.0,
-            style: BorderStyle.solid,
             color: Theme.of(context).primaryColor,
           ),
         ),
